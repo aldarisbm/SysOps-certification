@@ -296,6 +296,49 @@
     - DNS
     - LoadBalancer
 
+# CloudWatch Metrics for EC2
+
+- AWS Provided Metrics (AWS pushes them)
+    - Basic monitoring (default): Collected at 5 mins intervals
+    - Detailed Monitoring (paid): Collected at 1 min interval
+    - Includes CPU, Network, Disk and status check 
+
+- Custom Metrics (yours to push)
+    - Basic Resolution: Collected at 1 min intervals
+    - High Resolution: collected all the way at 1 second
+    - Include RAM, application level metrics
+    - Make sure the IAM permissions on the ec2 instance roles are correct 
+
+### EC2 _included_ Metrics
+- CPU: 
+    - CPU Utilization + Credit Usage / Balance
+- Network: 
+    - Network In / Out
+- Status Check:
+    - Instance status: check the ec2 VM
+    - System status: check the underlying hardware
+- Disk: 
+    - Read / Write for Ops / Bytes (only for instance store - not EBS backed)
+
+- #### RAM IS NOT INCLUDED IN THE AWS EC2 METRICS
+
+### EC2 Custom Metrics
+
+- Sample custom metrics for EC2:
+    - RAM Usage
+    - Swap Usage
+    - Any custom metric for your application (requests per second)
+
+### CloudWatch Logs for EC2
+
+- By default, your instance won't send logs to CloudWatch
+- You need to run a CloudWatch agent on EC2 to push the log files you want
+- Make sure that our IAM roles are right 
+
+
+
+
+
 
 
 
