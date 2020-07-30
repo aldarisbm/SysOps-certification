@@ -195,12 +195,106 @@
 
 ### Spot Fleets allow us to automatically request Spot Instances with the lowest price
 
+### Check on Reserved Instance vs Reserved Hosts
 
+# Instance Types
 
+### R: Applications that needs a lot of Ram (in-memory caches)
 
+### C: Applications that need good CPU (compute / database)
 
+### M: Applications that are balanced - think medium - (general / webapp)
 
+### I: Applications that need good local I/O - instance storage (databases)
 
+### G: Applications that need a GPU (video rendering/machine learning)
+
+### T2/T3: Burstable capacity (up to a capacity)
+
+### T2/T3 Unlimited: Unlimited burst
+
+### Burstable Instances 
+
+- Burst means that overall the instance has ok performance
+- Whent he machine needs to process something unexpected (a spike on load) it can burst and cpu can be very good
+- If the machine bursts, it utilizes burst credits
+- If all the credits are gone the CPU becomes bad
+- If the machine stops bursting credits are accumulated over time
+- They can be amazing way to handle unexpected traffic and getting the insurance that it will be handled correctly
+- If your instance consistently runs low on credit(burst), you need to move to a diff kind of non-burstable instance
+- (Unlimited) You pay extra money for the bursting
+
+# EC2 AMIs
+
+- Lots of base images
+    - Ubuntu
+    - Fedora
+    - RedHat
+    - Windows
+    - Etc..
+
+- Can be customized at runtime (userdata)
+
+- Why create an AMI
+    - Pre-installed packages needed
+    - Faster boot time
+    - Machine comes configured with monitoring/enterprise software
+    - Security concerts - control over the machines in the network
+    - Control of maintenance
+    - AD integration out of the box
+    - Installing your app ahead of time (for faster deploys when auto-scaling)
+    - Using someone else's AMI that is optimized for running an app, db... etc
+
+- AMI are built for a specific region
+
+- Public AMIs
+    - You can leverage AMIs from other people
+    - You can also pay for other people's AMI by the hour
+    - These people have optimized the software
+    - Machine is easy to run and configure
+    - You basically rent "expertise" from the AMI creator
+
+- Do your due dilligence
+    - Some AMIs can come with malware
+    - Do not use an AMI you dont trust
+    - Might not be secure for your enterprise
+
+- AMI Storage:
+    -  Your AMI take space and they live in s3
+    - Amazon s3 is a durable resilient storage
+    - By default they are private
+    - You can make them public and/or sell it
+
+- AMI Pricing:
+    - You pay for the s3 space
+    - Over its quite inexpensive
+    - Make sure to remove the AMIs you dont use
+
+### Cross accoutn AMI Copy
+- You can share with someone elses AWS account
+- Sharing an AMI does not affect ownership
+- It doesnt prevent against copying (if they copy into a region)
+- To copy an AMI that was shared with you from another acct, the owner of the source AMI must grant you read permissions for the storage that backs the AMI, either the associated EBS snapshot(for an amazon ebs-backed ami) or an associated s3 bucket (for an instance storage-backed ami)
+
+- You can't copy an encrypted AMI that was shared with you from another account. Instead, if the underlying snapshot and encrpytion key were shared with you, you can copy the snapshots while reencrypting it with a key of your own. You own the copied snapshot, and can register it as a new AMI
+- #### You cant copy an AMI with an associated `billingProduct` code that was shared with you from another account. This includes Windows AMIs and AMIs from the AWS Marketplace. To copy a shared AMI with a `billingProduct` code, launch an EC2 instance in your account using the shared AMI and then create an AMI from the instance
+
+# Elastic IPs
+
+- When you stop and start an instance IP changes
+- If you need a fixed ip you need an elastic IP
+- An elastic IP is a public IPv4 IP you own as long as you dont delete it
+- You can attach it to one instance at a time
+- You can remap it across instances
+
+- You dont pay for the Elastic IP if its attached to a server
+- You pay for the Elastic IP if it's not attached to a server
+
+- With an Elastic IP you can mask the failure of an instance or software by rapidly remapping the address to another instance in your account 
+- You can have only 5 Elastic IP in your account (soft limit)
+- Try to avoid using Elastic IPs
+    - DNS
+    - LoadBalancer
 
 
 
