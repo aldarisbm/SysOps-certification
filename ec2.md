@@ -170,9 +170,30 @@
     - "Block" spot instance during a specific time frame (1 to 6 hours) without interruptions
     - In rare situations, the instance may be reclaimed    
 
+### How to terminate Spot Instances
+- Spot Request
+    - Max price
+    - Desired # of instances
+    - Launch spec
+    - Request type: one time | persistent
+    - Valid from, Valid until
 
+- Cancel the Spot Request 
+- Then terminate the instances
 
+### Spot Fleets
+- Spot Fleets = set of Spot Instances + (optional) On-Demand instances
+- The Spot Fleet will try to meet the target capacity with price constraints
+    - Define possible launch pools: instance type, OS, AZ
+    - Can have multiple launch pools, so that the fleet can choose
+    - Spot Fleet stops launching instances when reaching capacity or max cost
 
+- Strategies to allocate Spot Instances:
+    - `lowestPrice`: from the pool with the lowest price (cost opt, short work)
+    - `diversified`: distributed across all pools (great for availability, long workloads)
+    - `capacityOptimized`: pool with the optimal capacity for the number of instances
+
+### Spot Fleets allow us to automatically request Spot Instances with the lowest price
 
 
 
