@@ -279,3 +279,15 @@
         - Example:
             - provide access to wirte to s3 bucket using fb login
 
+#### AWS Compliance frameworks
+- AWS being compliant doesnt mean youre automatically compliant
+- You need to get audited as well
+- Remember Security of the cloud vs Security in the cloud
+
+#### AWS Artifact
+- (not really a service)
+- On demand access to AWS compliance documentation and AWS agreements
+- Artifact Reports - Allows you to dl aws sec and compli documents like AWS ISO certs, PCI...
+- Artifact Agreements - Allows you to review, accept, and track the status of AWS agreements such as the business associate addendum (BAA)
+
+- Can be used to support internal audit and complicance
