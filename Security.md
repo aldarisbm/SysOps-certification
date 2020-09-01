@@ -291,3 +291,17 @@
 - Artifact Agreements - Allows you to review, accept, and track the status of AWS agreements such as the business associate addendum (BAA)
 
 - Can be used to support internal audit and complicance
+
+### Sect Summary
+- AWS Shield: Automatic DDoS protec + 24/7 support for advanced
+- AWS WAF: Firewall to filter incoming requests based on rules
+- AWS Inspector: For EC2 only, install agent and find vulnerabilities
+- AWS GuardDuty: Find malicious behaviour with VPC, DNS & CloudTrai Logs
+- AWS Trusted Advisor: Analyze AWS account and get recommendations
+- AWS KMS: Encryption keys managed by AWS
+- AWS CloudHSM: Hardware encryption - we manage keys
+- AWS STS: generate security token
+- Identity federation: SAML 2.0 or custom for enterprise, cognito for apps
+- AWS Artifact: Get Acecss to compliance reports such as PCI, ISO, ETC...
+- AWS Config: Track config changes and compliance against rules
+- AWS CloudTrail: track API calls made by users within your acct
