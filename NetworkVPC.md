@@ -139,4 +139,27 @@
 - Define nacl rules
     - Rules have a number 1-32766 and higher precedence with a lower number
     - if you define `100 ALLOW IP` and `200 DENY IP`, IP will be allowed
-    - 
+    - Last rule is an asteriks (*) and denies request in case of no rule match
+    - AWS recommends adding rules by increment of 100
+- Newly created NACL will deny everything
+- NACL are a great way of blocking a specific IP at the subnet level
+
+#### VPC Peering
+- Not transative (must be done from a to b and a to c)
+- Make them behave as if they were in the same network
+- Not have overlapping CIDR
+- Can do VPC peering with another acct
+- Works inter-region, cross-acct
+- can reference a SG of a peered VPC 
+
+#### VPC Endpoints
+- Endpoints allows you to connect to AWS services using a private network instead of public interweb
+- scale horizontally and redundant
+- they remove the ned of IGW, NAT etc... to access AWS services
+
+- Interface provisions an ENI (private IP address) as an entry point (must attach SG) most AWS Ser
+- Gateway provisions a target and must be used in a route table - S3 and DynamoDB
+
+- In case of issues
+    - Check DNS setting res in your VPC
+    - Check Route Tables
