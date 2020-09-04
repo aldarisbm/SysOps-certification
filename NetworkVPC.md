@@ -163,3 +163,73 @@
 - In case of issues
     - Check DNS setting res in your VPC
     - Check Route Tables
+
+#### Flow Logs
+- Capture information about IP traffic into your interfaces
+    - VPC Flow Logs
+    - Subnet Flow logs
+    - Elastic Network Interface Flow logs
+
+- Helps to monitor & troubleshoot connectivity issues
+- Flow logs data can go to s3 / cloudwatch logs
+- captures network information from AWS managed interfaces too: ELB, RDS, ElastiCache, RedShift, Workspaces
+
+- Flow Log Syntax
+    - <version> <account-id> <interface-id> <srcaddr> <dstaddr> <srcport> <dstport> <protocol> <packets> <bytes> <start> <end> <action> <log-status>
+    - srcaddr, dstaddr help identify problematic IP
+    - srcport, dstport help identify problematic ports
+    - Action: success or failure of the request due to Security Group / NACL
+    - can be used for analytics on usage patters, or malicious behaviour
+
+#### Bastion Host
+- A public bastion host that you ssh to private instances to
+
+#### VPN Gateway
+- Customer Gateway (onprem side)
+- VPN Gateway 
+- VPN Gateway <-> SiteToSite <-> VPN connection
+- Goes over the public internet
+
+- Virtual Private Gateway
+    - VPN concentrator on the AWS side of the VPN conn
+    - VGW is created and attached to the VPC from which you want to create the site-to-site VPN connection
+    - Possibility to customize the ASN
+- Customer Gateway
+    - Software application or physical device on customer side of the VPN connection
+    - IP Address
+        - Use static, internet-routable IP address for your customer gateway device
+        - If behind a CGW behind (w NAT-T) use the public IP address of the NAT
+
+#### Direct Connect
+- Provides a private connection from a remote network to your VPC
+- Dedicated connection must be setup between your DC and AWS Direct Connect locations
+- You need to setup a Virtual Private Gatewy on your VPC
+- Access public resources (s3) and private (ec2) on same connection
+- Use cases
+    - increase bw throughput - working w large data sets - lower cost
+    - more consistent network experience - applicartions using real-time data feeds
+    - hybrid envs (on prem + cloud)
+
+- Direct Connect Gateway
+    - Connection Types:
+        - Dedicated 1 Gbps and 10 Gbps capacity
+            - Physical ethernet port dedicated to a customer
+            - Request made to AWS first, then completed by AWS direct connect partners
+        - Hosted 5 Mbps, 500 Mbps, 10 Gbps
+            - connection requests are made via AWS Direct Connect Partners
+            - capacity can be added or removed on demand
+            - 1, 2, 5, 10 Gbps available at select AWS direct connect parnters
+        - Lead times are often longer than 1 month to establish a new connection
+
+- Direct Connection - Encryption
+    - Data in transit is not encrypted but is private!!!!
+    - AWS Direct Connect + VPN provides an IPsec-encrypted private connection
+    - Good for an extra level of security but slightly more complex to put in place
+
+#### Egress only internet gateway
+- Egress only internet gateway is for IPv6 only
+- Similar function as a NAT, but a NAT is for IPv4
+- Good to know: IPv6 are all public addresses
+- Therefore all of our instances with IPv6 are publicly accessible
+- Egress Only Internet Gateway gives our IPv6 instances access to the internet, but they wont be directly reachable by the internet
+- After creating an egress only internet gateway edit the route tables
